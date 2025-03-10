@@ -17,7 +17,7 @@ function InstallJupyterExtensions() {
 
 function StartNotebook() {
 	# start the notebook
-	jupyter notebook
+	jupyter notebook --NotebookApp.token=''
 }
 
 function ActivateVirtual() {
