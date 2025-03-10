@@ -23,7 +23,7 @@ function install_requirements {
 }
 
 function start_notebook {
-    jupyter notebook
+    jupyter notebook --NotebookApp.token=''
 }
 
 activate_shell
