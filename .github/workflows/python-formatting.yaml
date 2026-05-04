@@ -1,54 +1,70 @@
----
-####################
-####################
-## Auto Formatter ##
-####################
-####################
-name: Formate Code
-
-#
-# Documentation:
-# https://github.com/mezgoodle/auto-formatter
-#
-
-#############################
-# Start the job on all push #
-#############################
+name: Third Attempt At Formatting
 on:
   push:
     branches: [main]
-  #pull_request:
-   # branches-ignore: [master]
-    # Remove the line above to run when pull-requesting to master
 
-###############
-# Set the Job #
-###############
 jobs:
-  build:
-    # Name the Job
-    name: Formate Code
-    # Set the agent to run on
+  kekel-formatter:
+    name: Pokus o formátování
     runs-on: ubuntu-latest
 
-    ##################
-    # Load all steps #
-    ##################
     steps:
-      ##########################
-      # Checkout the code base #
-      ##########################
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          # Full git history is needed to get a proper list of changed files within `auto-formatter`
-          fetch-depth: 0
+    - uses: actions/checkout@v3
+      with:
+        # Make sure the actual branch is checked out when running on pull requests
+        ref: ${{ github.head_ref }}
+    - uses: creyD/action_autopep8@v3.1
 
-      ################################
-      # Run Auto-formatter against code base #
-      ################################
-      - name: Auto-Formatter
-        uses: mezgoodle/auto-formatter@v1.0.2
-        env:
-            GITHUB_TOKEN: ${{ secrets.TOKEN }}
-            PYTHON: true
+# ---
+# ####################
+# ####################
+# ## Auto Formatter ##
+# ####################
+# ####################
+# name: Formate Code
+
+# #
+# # Documentation:
+# # https://github.com/mezgoodle/auto-formatter
+# #
+
+# #############################
+# # Start the job on all push #
+# #############################
+# on:
+#   push:
+#     branches: [main]
+#   #pull_request:
+#    # branches-ignore: [master]
+#     # Remove the line above to run when pull-requesting to master
+
+# ###############
+# # Set the Job #
+# ###############
+# jobs:
+#   build:
+#     # Name the Job
+#     name: Formate Code
+#     # Set the agent to run on
+#     runs-on: ubuntu-latest
+
+#     ##################
+#     # Load all steps #
+#     ##################
+#     steps:
+#       ##########################
+#       # Checkout the code base #
+#       ##########################
+#       - name: Checkout Code
+#         uses: actions/checkout@v4
+#         with:
+#           # Full git history is needed to get a proper list of changed files within `auto-formatter`
+#           fetch-depth: 0
+
+#       ################################
+#       # Run Auto-formatter against code base #
+#       ################################
+#       - name: Auto-Formatter
+#         uses: mezgoodle/auto-formatter@v1.0.2
+#         env:
+#             GITHUB_TOKEN: ${{ secrets.TOKEN }}
